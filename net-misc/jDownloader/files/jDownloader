@@ -1,6 +1,0 @@
-#!/bin/sh
-if [ ! -d "~/.jDownloader/" ] ; then
-	mkdir ~/.jDownloader/
-	cp -R /opt/jDownloader/* ~/.jDownloader/
-fi
-java -jar ~/.jDownloader/JDownloader.jar
