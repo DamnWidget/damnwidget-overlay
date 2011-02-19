@@ -1,0 +1,14 @@
+#! /bin/bash
+
+[ -d "$HOME/bin" ] || mkdir -p "$HOME/bin"
+[ -d "$HOME/bin/jDownloader" ] || cp -r /opt/jDownloader $HOME/bin/
+
+target="jDownloader"
+
+[ -n "$1" ] && [ -e "$HOME/bin/$1" ] && {
+	target=$1
+	shift
+}
+
+cd $HOME/bin/$target/
+java -jar JDownloader.jar "$@"
