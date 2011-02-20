@@ -9,7 +9,7 @@ inherit distutils eutils multilib
 
 DESCRIPTION="Next Generation Hard Disk Backup based on Debian Installer"
 HOMEPAGE="https://launchpad.net/backharddi-ng"
-SRC_URI="https://launchpad.net/~pedro-pena/+archive/${PN}/+files/${P}.tar.gz"
+SRC_URI="https://launchpad.net/~pedro-pena/+archive/${PN}/+files/${PN}_${PV}.tar.gz"
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -31,6 +31,8 @@ RDEPEND="sys-apps/sed
     dev-python/twisted-conch
     dev-python/dbus-python
     dev-python/simplejson
+    dev-python/ipaddr
+    dev-python/netifaces
     net-dns/dnsmasq
     net-misc/sshpass
     gtk? ( gnome-extra/zenity )
@@ -39,10 +41,6 @@ RDEPEND="sys-apps/sed
 pkg_setup() {
     python_set_active_version 2
     python_pkg_setup
-}
-
-src_prepare() {
-    #epatch "${FILESDIR}/${P}-setup_hardlinks.patch"
 }
 
 src_install() {
