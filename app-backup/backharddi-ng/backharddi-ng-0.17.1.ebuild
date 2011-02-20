@@ -5,7 +5,7 @@
 EAPI="3"
 PYTHON_DEPEND="2"
 
-inherit distutils eutils multilib
+inherit eutils multilib
 
 DESCRIPTION="Next Generation Hard Disk Backup based on Debian Installer"
 HOMEPAGE="https://launchpad.net/backharddi-ng"
@@ -27,31 +27,24 @@ RDEPEND="sys-apps/sed
     sys-fs/lvm2
     app-cdr/cdrtools
     app-cdr/dvd+rw-tools    
+    dev-lang/python:2.6
     dev-python/twisted
     dev-python/twisted-conch
     dev-python/dbus-python
     dev-python/simplejson
     dev-python/ipaddr
     dev-python/netifaces
+    dev-python/morbid
+    dev-python/orbited
+    dev-python/stomper
+    dev-python/stompservice
     net-dns/dnsmasq
     net-misc/sshpass
-    gnome-extra/zenity"    
+    >=net-misc/udpcast-20100130
+    gnome-extra/zenity
+    app-backup/backharddi-ng-kernel"    
 
-pkg_setup() {
-    python_set_active_version 2
-    python_pkg_setup
-}
-
-src_install() {
-    python_convert_shebangs -r 2 "bin/"
-
-    distutils_src_install
-
-    exeinto "/usr/$(get_libdir)/${PN}"
-    doexe "bin/desktopcouch-stop"
-    doexe "bin/desktopcouch-service"
-    doexe "bin/desktopcouch-get-port"
-
+src_install() {    
     if use doc; then
         insinto "/usr/share/doc/${PF}/api"
         doins "desktopcouch/records/doc/records.txt"
@@ -60,5 +53,4 @@ src_install() {
 
         doman "docs/man/desktopcouch-pair.1"
     fi
-    # sghjs
 }
