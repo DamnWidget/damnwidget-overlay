@@ -13,7 +13,7 @@ SRC_URI="https://launchpad.net/~pedro-pena/+archive/${PN}/+files/${PN}_${PV}_all
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+ftfp"
+IUSE=""
 
 DEPEND=">=sys-boot/grub-1.98"
 RDEPEND="${DEPEND}
@@ -39,7 +39,7 @@ RDEPEND="${DEPEND}
     dev-python/morbid    
     dev-python/stomper
     dev-python/stompservice
-    net-dns/dnsmasq
+    net-dns/dnsmasq[tftp]
     net-misc/sshpass
     >=net-misc/udpcast-20100130
     net-misc/orbited
