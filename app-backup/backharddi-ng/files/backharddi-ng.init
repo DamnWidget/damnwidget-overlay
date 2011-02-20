@@ -1,0 +1,26 @@
+#!/sbin/runscript
+# Copyright 1999-2011 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need net
+}
+
+start() {
+	if [[ -z "${BACKHARDDI_OPTS}" ]]; then
+	        eerror "BACKHARDDI_OPTS is not set!"
+	        eerror "You need to configure backharddi-ng in /etc/conf.d/backharddi-ng."
+	        return 1
+	fi
+	export PYTHONPATH
+	ebegin "Starting backharddi-ng: twistd"
+	start-stop-daemon --start --quiet --exec /usr/bin/twistd -- ${BACKHARDDI_OPTS}
+	eend $? "Failed to start backharddi-ng: twistd"
+}
+
+stop() {
+	ebegin "Stopping backharddi-ng: twistd"
+        start-stop-daemon --stop --quiet --pidfile ${BH_PIDFILE}
+        eend $? "Failed to stop backharddi-ng: twistd"
+}

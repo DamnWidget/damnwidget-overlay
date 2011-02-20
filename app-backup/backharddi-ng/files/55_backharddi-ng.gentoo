@@ -1,0 +1,54 @@
+#!/bin/sh -e
+
+# grub-mkconfig helper script.
+# Copyright (C) 2006,2007,2008,2009,2010  Free Software Foundation, Inc.
+#
+# GRUB is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# GRUB is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with GRUB.  If not, see <http://www.gnu.org/licenses/>.
+
+. /lib/grub/grub-mkconfig_lib
+
+# We can't cope with loop-mounted devices here.
+case ${GRUB_DEVICE_BOOT} in
+  /dev/loop/*|/dev/loop[0-9])
+    exit 0
+  ;;
+esac
+
+if [ "x${GRUB_DEVICE_UUID}" = "x" ] || [ "x${GRUB_DISABLE_LINUX_UUID}" = "xtrue" ] \
+    || ! test -e "/dev/disk/by-uuid/${GRUB_DEVICE_UUID}" \
+    || [ "`grub-probe -t abstraction --device ${GRUB_DEVICE} | sed -e 's,.*\(lvm\).*,\1,'`" = "lvm"  ] ; then
+  LINUX_ROOT_DEVICE=${GRUB_DEVICE}
+else
+  LINUX_ROOT_DEVICE=UUID=${GRUB_DEVICE_UUID}
+fi
+
+#linux-backharddi-ng
+#minirt-backharddi-ng.gz
+#append backharddi/medio=hd-media video=vesa:ywrap,mtrr vga=788 locale=es_ES console-keymaps-at/keymap=es quiet
+
+if test -e /boot/linux-backharddi-ng ; then
+  BACK1=$( make_system_path_relative_to_its_root "/boot/linux-backharddi-ng" )
+  BACK2=$( make_system_path_relative_to_its_root "/boot/minirt-backharddi-ng.gz" )
+  echo "Found Backharddi-NG image: linux-backharddi-ng" >&2
+  cat << EOF
+menuentry "Backharddi-NG (sistema de backup)" {
+EOF
+  prepare_boot_cache="$(prepare_grub_to_access_device ${GRUB_DEVICE_BOOT} | sed -e "s/^/\t/")"
+  printf '%s\n' "${prepare_boot_cache}"
+  cat << EOF
+        linux   $BACK1 backharddi/medio=hd-media video=vesa:ywrap,mtrr vga=788 locale=es_ES console-keymaps-at/keymap=es quiet
+        initrd  $BACK2
+}
+EOF
+fi
