@@ -1,7 +1,7 @@
 GitHub Markup
 =============
 
-This is my overlay for Gentoo ~amd64 and ¬x86
+This is my overlay for Gentoo ~amd64 and ~x86
 
 Those package are tested only in my machines, use at your own risk.
 
@@ -9,11 +9,11 @@ HOWTO Install
 -------------
 
 To install DamnWidget Gentoo Overlay (to install Backharddi NG on Gentoo for example) you will
-create a new layman XML repo file and add it to your /etc/layman/layman.cfg overlays.
+create a new layman XML repo file and add it to your: 
+	/etc/layman/layman.cfg 
 
-### Layman's XML repo file
+### Layman's XML repo file:
 
-:
 	<?xml version="1.0" encoding="UTF-8"?>
 	<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
 	<repositories xmlns="" version="1.0">
@@ -36,21 +36,14 @@ Then you can install the DamnWidget overlay just using:
 Overlays
 --------
 
-sys-boot/os-prober
-
-net-misc/tucan
-
-net-misc/udpcast-20100130 (required by Backharddi NG)
-
-dev-python/ipaddr (required by Backharddi NG)
-
-dev-python/netifaces (required by Backharddi NG)
-
-dev-python/stompservice (required by BAckharddi NG)
-
-app-backup/backharddi-ng-kernel
-
-app-backup/backharddi-ng
+1. sys-boot/os-prober
+2. net-misc/tucan
+3. net-misc/udpcast-20100130 (required by Backharddi NG)
+4. dev-python/ipaddr (required by Backharddi NG)
+5. dev-python/netifaces (required by Backharddi NG)
+6. dev-python/stompservice (required by BAckharddi NG)
+7. app-backup/backharddi-ng-kernel
+8. app-backup/backharddi-ng
 
 Is this overlay supported by Gentoo?
 ------------------------------------
