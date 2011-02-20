@@ -20,9 +20,9 @@ create a new layman XML repo file and add it to your:
 	  <repo quality="experimental" status="unofficial">
 	      <name><![CDATA[DamnWidget]]></name>
 	      <description><![CDATA[collection of ebuilds by DamnWidget]]></description>
-	      <homepage>http://entropia-sistemica.blogspot.com/</homepage>
+	      <homepage>http://www.open-phoenix.com/</homepage>
 	      <owner>
-	        <email>damnwidget@gmail.com</email>
+	        <email>damnwidget at gmail dot com</email>
 	      </owner>
 	      <source type="git">git://github.com/DamnWidget/damnwidget-overlay.git</source>
 	      <feed>https://github.com/DamnWidget/damnwidget-overlay/commits/master.atom</feed>
