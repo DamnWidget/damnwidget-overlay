@@ -13,7 +13,7 @@ SRC_URI="https://launchpad.net/~pedro-pena/+archive/${PN}/+files/${PN}_${PV}.tar
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+gtk"
+IUSE="+gtk kde"
 
 DEPEND=""
 RDEPEND="sys-apps/sed
@@ -35,8 +35,7 @@ RDEPEND="sys-apps/sed
     dev-python/netifaces
     net-dns/dnsmasq
     net-misc/sshpass
-    gtk? ( gnome-extra/zenity )
-    kde? ( kde-base/kdialog )"
+    gnome-extra/zenity"    
 
 pkg_setup() {
     python_set_active_version 2
