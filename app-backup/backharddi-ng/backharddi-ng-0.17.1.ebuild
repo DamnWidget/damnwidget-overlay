@@ -31,6 +31,7 @@ RDEPEND="${DEPEND}
     dev-lang/python:2.6
     dev-python/twisted
     dev-python/twisted-conch
+	dev-python/twisted-runner
     dev-python/dbus-python
     dev-python/simplejson
     dev-python/ipaddr
