@@ -52,6 +52,37 @@ src_unpack() {
     fi
 }
 
-#src_install() {    
-    
-#}
+src_install() {
+      einfo "Copying shared data..."
+      dodir /usr/share/backharddi-ng      
+      cp "${S}/usr/share/backharddi-ng/*.filelist" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+      cp "${S}/usr/share/backharddi-ng/grub" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+      cp -R "${S}/usr/share/backharddi-ng/common/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+      cp -R "${S}/usr/share/backharddi-ng/isolinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+      cp -R "${S}/usr/share/backharddi-ng/syslinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+      
+      dodir /usr/share/applications
+      cp "${S}/usr/share/applications/*.desktop" "${D}/usr/share/applications/" || die "Install failed!"
+      
+      einfo "Creating the backharddi-ng python structure..."
+      dodir /usr/share/backharddi-ng/python/src
+      cp -R "${S}/usr/share/backharddi-ng/python/src/backhardding/" "${D}/usr/share/backharddi-ng/python/src/" || die "Install failed!"
+      
+      einfo "Copying documentation..."
+      dodir /usr/share/doc/backharddi-ng
+      cp "${S}/usr/share/doc/backharddi-ng/copyright" "${D}/usr/share/doc/backharddi-ng/" || die "Install failed!"
+  
+      einfo "Copying pixmaps..."
+      dodir /usr/share/pixmaps
+      cp "${S}/usr/share/pixmaps/*" "${D}/usr/share/pixmaps/" || die "Install failed!"
+
+      einfo "Copying executable files..."
+      cp "${S}/usr/bin/*" "${D}/usr/bin/" || die "Install failed!"
+
+      dodir /var/lib/backharddi-ng
+}
+
+pkg_postinst() {
+      elog "You will run grub-mkconfig to create Backharddi NG Grub entries"
+      elog "Report bugs to oscar.campos@open-phoenix.com"
+}
