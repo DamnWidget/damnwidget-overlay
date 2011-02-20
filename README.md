@@ -1,5 +1,5 @@
-GitHub Markup
-=============
+DamnWidget Gentoo Overlay
+=========================
 
 This is my overlay for Gentoo ~amd64 and ~x86
 
