@@ -25,7 +25,7 @@ src_unpack() {
 }
 
 src_install() {    
-    cp -R "${S}/boot" "${D}/" || die "Install failed!"
+    cp -R "${S}/boot" "${D}/" || die "Install failed!\n${S}"
     
     dodir /usr/share/doc/backharddi-ng-kernel-i386/
     cp -R "${S}/usr/share/doc/backharddi-ng-kernel-i386" "${D}/usr/share/doc/" || die "Install failed!"
