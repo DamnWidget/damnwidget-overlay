@@ -43,46 +43,61 @@ RDEPEND="${DEPEND}
     >=net-misc/udpcast-20100130
     net-misc/orbited
     gnome-extra/zenity
-    app-backup/backharddi-ng-kernel"    
+    app-backup/backharddi-ng-kernel"
 
 src_unpack() {
-    if [ "${A}" != "" ];then
-	unpack ${A}
-	unpack './data.tar.gz'
-    fi
+	if [ "${A}" != "" ];then
+		unpack ${A}
+		unpack './data.tar.gz'
+	fi
 }
 
 src_install() {
-      einfo "Copying shared data..."
-      dodir /usr/share/backharddi-ng      
-      cp "${S}/usr/share/backharddi-ng/*.filelist" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
-      cp "${S}/usr/share/backharddi-ng/grub" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
-      cp -R "${S}/usr/share/backharddi-ng/common/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
-      cp -R "${S}/usr/share/backharddi-ng/isolinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
-      cp -R "${S}/usr/share/backharddi-ng/syslinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
-      
-      dodir /usr/share/applications
-      cp "${S}/usr/share/applications/*.desktop" "${D}/usr/share/applications/" || die "Install failed!"
-      
-      einfo "Creating the backharddi-ng python structure..."
-      dodir /usr/share/backharddi-ng/python/src
-      cp -R "${S}/usr/share/backharddi-ng/python/src/backhardding/" "${D}/usr/share/backharddi-ng/python/src/" || die "Install failed!"
-      
-      einfo "Copying documentation..."
-      dodir /usr/share/doc/backharddi-ng
-      cp "${S}/usr/share/doc/backharddi-ng/copyright" "${D}/usr/share/doc/backharddi-ng/" || die "Install failed!"
-  
-      einfo "Copying pixmaps..."
-      dodir /usr/share/pixmaps
-      cp "${S}/usr/share/pixmaps/*" "${D}/usr/share/pixmaps/" || die "Install failed!"
+	einfo "Copying shared data..."
+	dodir /usr/share/backharddi-ng
+	cp "${WORKDIR}/usr/share/backharddi-ng/backharddi-ng-boot.filelist" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+	cp "${WORKDIR}/usr/share/backharddi-ng/backharddi-ng-dvd.filelist" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+	cp "${WORKDIR}/usr/share/backharddi-ng/grub" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+	cp -R "${WORKDIR}/usr/share/backharddi-ng/common/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+	cp -R "${WORKDIR}/usr/share/backharddi-ng/isolinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
+	cp -R "${WORKDIR}/usr/share/backharddi-ng/syslinux/" "${D}/usr/share/backharddi-ng/" || die "Install failed!"
 
-      einfo "Copying executable files..."
-      cp "${S}/usr/bin/*" "${D}/usr/bin/" || die "Install failed!"
+	dodir /usr/share/applications
+	cp "${WORKDIR}/usr/share/applications/backharddi-ng.desktop" "${D}/usr/share/applications/" || die "Install failed!"
+	cp "${WORKDIR}/usr/share/applications/backharddi-ng_boot.desktop" "${D}/usr/share/applications/" || die "Install failed!"
+	cp "${WORKDIR}/usr/share/applications/backharddi-ng_dvd.desktop" "${D}/usr/share/applications/" || die "Install failed!"
 
-      dodir /var/lib/backharddi-ng
+	einfo "Creating the backharddi-ng python structure..."
+	dodir /usr/share/backharddi-ng/python/src
+	cp -R "${WORKDIR}/usr/share/backharddi-ng/python/src/backhardding/" "${D}/usr/share/backharddi-ng/python/src/" || die "Install failed!"
+
+	einfo "Copying documentation..."
+	dodir /usr/share/doc/backharddi-ng
+	cp "${WORKDIR}/usr/share/doc/backharddi-ng/copyright" "${D}/usr/share/doc/backharddi-ng/" || die "Install failed!"
+
+	einfo "Copying pixmaps..."
+	dodir /usr/share/pixmaps
+	cp -R "${WORKDIR}/usr/share/pixmaps/" "${D}/usr/share/" || die "Install failed!"
+
+	einfo "Copying executable files..."
+	cp -R "${WORKDIR}/usr/bin/" "${D}/usr/" || die "Install failed!"
+
+	dodir /var/lib/backharddi-ng
+
+	einfo "Copying config files"
+	dodir /etc/backharddi-ng
+	cp -R "${WORKDIR}/etc/backharddi-ng/" "${D}/etc/"
+
+	newconfd "${FILESDIR}/backharddi-ng.conf" backharddi-ng
+	newinitd "${FILESDIR}/backharddi-ng.init" backharddi-ng
+
+	insinto /etc/grub.d
+	insopts -m0755
+	doins "${FILESDIR}/55_backharddi-ng"
 }
 
 pkg_postinst() {
-      elog "You will run grub-mkconfig to create Backharddi NG Grub entries"
-      elog "Report bugs to oscar.campos@open-phoenix.com"
+	elog "IF you want to use Backharddi NG HD"
+	elog "You will run grub-mkconfig to create grub entries"
+	elog "Report bugs to oscar.campos@open-phoenix.com"
 }
