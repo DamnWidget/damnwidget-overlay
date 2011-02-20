@@ -34,13 +34,13 @@ RDEPEND="sys-apps/sed
     dev-python/simplejson
     dev-python/ipaddr
     dev-python/netifaces
-    dev-python/morbid
-    dev-python/orbited
+    dev-python/morbid    
     dev-python/stomper
     dev-python/stompservice
     net-dns/dnsmasq
     net-misc/sshpass
     >=net-misc/udpcast-20100130
+    net-misc/orbited
     gnome-extra/zenity
     app-backup/backharddi-ng-kernel"    
 
