@@ -60,4 +60,5 @@ src_install() {
 
         doman "docs/man/desktopcouch-pair.1"
     fi
+    # sghjs
 }
