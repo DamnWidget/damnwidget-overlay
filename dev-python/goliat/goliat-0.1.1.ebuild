@@ -7,7 +7,7 @@ PYTHON_DEPEND="*:2.5"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="2.4"
 
-inherit distutils git bzr
+inherit distutils eutils
 
 DESCRIPTION="Goliat is a Web Applications Framework written in Python and
 JavaScript licensed under the General Public License. Goliat uses Twisted,
@@ -24,11 +24,24 @@ RDEPEND="
 	>=dev-python/twisted-10.1.0
 	>=net-misc/orbited-0.7
 	>=dev-python/pyyaml-3.08
-	twisted-storm? ( dev-vcs/bzr )
+	twisted-storm? ( >=dev-python/storm-0.15[twisted] )
 	!twisted-storm? ( >=dev-python/storm-0.15 )
 	qpy? ( dev-python/qpy )
 "
 DEPEND="${RDEPEND}"
+
+src_prepare() {
+	if use twisted-storm; then
+		einfo "You are instaling Goliat with Twisted Storm integration"
+		einfo "Goliat works great with Twisted Storm integration, but"
+		einfo "twsited-integration branch seems pretty dead now"
+		ewarn "If you're unsure about this just hit Ctrl+C"
+	fi
+
+	distutils_src_prepare
+	cd ${WORKDIR}
+	epatch "${FILESDIR}/${P}-setup.py.patch"
+}
 
 src_install() {
 	distutils_src_install
