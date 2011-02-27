@@ -3,9 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pyinotify/pyinotify-0.9.1.ebuild,v 1.5 2011/02/12 18:23:48 armin76 Exp $
 
 EAPI="3"
-PYTHON_DEPEND="*:2.5"
+PYTHON_DEPEND="2:2.5"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="2.4"
+RESTRICT_PYTHON_ABIS="2.4 3.*"
 
 inherit distutils eutils
 
