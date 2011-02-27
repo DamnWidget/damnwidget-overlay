@@ -26,7 +26,8 @@ RDEPEND="
 	>=dev-python/pyyaml-3.08
 	twisted-storm? ( >=dev-python/storm-0.15[twisted] )
 	!twisted-storm? ( >=dev-python/storm-0.15 )
-	qpy? ( dev-python/qpy )
+	qpy? ( dev-python/evoque[qpy] )
+	!qpy? ( dev-python/evoque )
 "
 DEPEND="${RDEPEND}"
 
