@@ -1,13 +1,30 @@
 #!/usr/bin/env python
 
 # check Python's version
-import sys
+import sys, os
 if sys.version < '2.5':
     sys.stderr.write('This module requires at least Python 2.5\n')
     sys.exit(1)
 
+if sys.version >= '3.0':
+   from functools import reduce
+
 # import statements
 from distutils.core import setup, Extension
+
+# Static Types
+static_types=[
+    '*.js',
+    '*.html',
+    '*.css',
+    '*.png',
+    '*.jpg',
+    '*.gif',
+    '*.ico',
+    '*.txt*',
+    '*.py',
+    '*.evoque'
+]
 
 # Package data
 def get_package_data():
@@ -55,11 +72,10 @@ setup(
     classifiers=classif,
     url='http://goliat.open-phoenix.com',
     download_url='http://github.com/downloads/DamnWidget/goliat/goliat-0.1.1.tar.bz2',
-    py_modules=['goliat'],
     package_dir={'goliat': 'src/goliat'},
-    package_data={'goliat': get_package_data()}
-    install_requires=['twisted >= 10.0.0', 'storm >= 0.15', 'pyyaml >= 3.08'],
-    requires=['twisted(>=10.0.0)', 'storm(>=0.15)', 'pyyaml(>=3.08)'],
+    package_data={'goliat': get_package_data()},
+    install_requires=['twisted >= 10.1.0', 'evoque >= 0.4', 'qpy', 'storm >= 0.15', 'pyyaml >= 3.08'],
+    requires=['twisted(>=10.1.0)', 'evoque(>=0.4)', 'qpy', 'storm(>=0.15)', 'pyyaml(>=3.08)'],
     scripts=['src/goliat-mgr'],
     zip_safe=False,
     packages=[''],
