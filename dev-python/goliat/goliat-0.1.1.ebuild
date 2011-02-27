@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-python/twisted-10.1.0
 	>=net-misc/orbited-0.7
 	>=dev-python/pyyaml-3.08
-	twisted-storm? ( >=dev-python/storm-0.15[twisted] )
+	twisted-storm? ( =dev-python/storm-0.16[twisted] )
 	!twisted-storm? ( >=dev-python/storm-0.15 )
 	qpy? ( dev-python/evoque[qpy] )
 	!qpy? ( dev-python/evoque )
