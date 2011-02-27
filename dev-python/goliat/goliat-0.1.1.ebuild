@@ -36,7 +36,7 @@ src_prepare() {
 		einfo "You are instaling Goliat with Twisted Storm integration"
 		einfo "Goliat works great with Twisted Storm integration, but"
 		einfo "twsited-integration branch seems pretty dead now"
-		ewarn "If you're unsure about this just hit Ctrl+C"
+		einfo "If you're unsure about this just hit Ctrl+C"
 	fi
 
 	distutils_src_prepare
