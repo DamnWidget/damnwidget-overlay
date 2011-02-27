@@ -16,9 +16,9 @@ EBZR_REPO_URI="lp:~therve/storm/twisted-integration"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="mysql postgres sqlite test"
+IUSE="mysql postgres sqlite test twisted"
 
-RDEPEND="dev-python/twisted
+RDEPEND="twisted? ( dev-python/twisted )
 	mysql? ( dev-python/mysql-python )
 	postgres? ( =dev-python/psycopg-2* )
 	sqlite? ( || ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-lang/python:2.5[sqlite] dev-python/pysqlite:2 ) )"

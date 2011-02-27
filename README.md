@@ -8,7 +8,7 @@ Those package are tested only in my machines, use at your own risk.
 HOWTO Install
 -------------
 
-To install DamnWidget Gentoo Overlay (to install Backharddi NG on Gentoo for example) you will
+To install DamnWidget Gentoo Overlay (to install Backharddi NG or Goliat for example) you will
 create a new layman XML repo file and add it to your: 
 	/etc/layman/layman.cfg 
 
