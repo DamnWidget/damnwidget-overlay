@@ -21,9 +21,9 @@ IUSE="mysql postgres sqlite test twisted"
 RDEPEND="twisted? ( dev-python/twisted )
 	mysql? ( dev-python/mysql-python )
 	postgres? ( =dev-python/psycopg-2* )
-	sqlite? ( || ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-lang/python:2.5[sqlite] dev-python/pysqlite:2 ) )"
+	sqlite? ( || ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-python/pysqlite:2 ) )"
 DEPEND="dev-python/setuptools
-	test? ( || ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-lang/python:2.5[sqlite] dev-python/pysqlite:2 ) )"
+	test? ( || ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-python/pysqlite:2 ) )"
 
 PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
 
