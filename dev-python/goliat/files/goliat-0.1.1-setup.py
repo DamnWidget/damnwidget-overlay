@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # check Python's version
-import sys, os
+import sys, os, setuptools
 if sys.version < '2.5':
     sys.stderr.write('This module requires at least Python 2.5\n')
     sys.exit(1)
@@ -47,36 +47,34 @@ def get_package_data():
 # debug
 DISTUTILS_DEBUG = False
 
-classif = [
-    'Development Status :: 4 - Beta',
-    'Environment :: Console',
-    'Environment :: Web Environment',
-    'Intended Audience :: Developers',
-    'Intended Audience :: System Administrators',
-    'License :: OSI Approved :: GPLv2 License',
-    'Operating System :: POSIX',
-    'Programming Language :: Python',
-    'Topic :: Software Development :: Libraries :: Web Services :: Python Modules'
-    ]
-
 setup(
-    name='Goliat',
+    name="Goliat",
     version='0.1.1',
-    description='Goliat Web Applications Framework',
-    author='Open Phoenix IT S.Coop.And',
-    author_email='oscar.campos@open-phoenix.com',
-    maintainer='Oscar Campos Ruiz',
-    maintainer_email='oscar.campos@open-phoenix.com',
-    license='GPLv2 License',
-    platforms='Linux',
-    classifiers=classif,
-    url='http://goliat.open-phoenix.com',
-    download_url='http://github.com/downloads/DamnWidget/goliat/goliat-0.1.1.tar.bz2',
+    description="Goliat Web Applications Framework.",
+    author="Open Phoenix IT S.Coop.And",
+    author_email="goliat@open-phoenix.com",
+    maintainer="Oscar Campos Ruiz",
+    maintainer_email="oscar.campos@open-phoenix.com",
+    packages=setuptools.find_packages('src', exclude=['tests', 'storm-twisted']),
     package_dir={'goliat': 'src/goliat'},
-    package_data={'goliat': get_package_data()},
+    package_data={
+        'goliat': get_package_data()
+    },
+    url='http://goliat.open-phoenix.com',
+    license='GPLv2 License',
     install_requires=['twisted >= 10.1.0', 'evoque >= 0.4', 'qpy', 'storm >= 0.15', 'pyyaml >= 3.08'],
     requires=['twisted(>=10.1.0)', 'evoque(>=0.4)', 'qpy', 'storm(>=0.15)', 'pyyaml(>=3.08)'],
     scripts=['src/goliat-mgr'],
     zip_safe=False,
-    packages=[''],
-    )
+    classifiers=[
+        'Development Status :: 4 - Beta',
+	'Environment :: Console',
+	'Environment :: Web Environment',
+	'Intended Audience :: Developers',
+	'Intended Audience :: System Administrators',
+	'License :: OSI Approved :: GPLv2 License',
+	'Operating System :: POSIX',
+	'Programming Language :: Python',
+	'Topic :: Software Development :: Libraries :: Web Services :: Python Modules'
+    ]
+)
