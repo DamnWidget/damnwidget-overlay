@@ -39,8 +39,7 @@ src_prepare() {
 	fi
 
 	distutils_src_prepare
-	cd ${WORKDIR}
-	epatch "${FILESDIR}/${P}-setup.py.patch"
+	cp "${FILESDIR}/${P}-setup.py" "${WORKDIR}/${P}/setup.py"
 }
 
 src_install() {
