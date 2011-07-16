@@ -16,7 +16,4 @@ KEYWORDS="~amd64 ~x86"
 
 RDEPEND=">=net-libs/nodejs-0.4"
 
-src_compile() { :; }
-
-src_install() { :; }
 
