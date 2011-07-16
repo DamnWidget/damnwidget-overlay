@@ -14,7 +14,7 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-RDEPEND=">=net-lib/nodejs-0.4"
+RDEPEND=">=net-libs/nodejs-0.4"
 
 src_compile() { :; }
 
