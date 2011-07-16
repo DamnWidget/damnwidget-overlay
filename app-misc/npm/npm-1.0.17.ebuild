@@ -18,7 +18,5 @@ RDEPEND=">=net-libs/nodejs-0.4"
 
 src_compile() { :; }
 
-src_install() {
-	emake DESTDIR="${D}"/usr install || die "emake install failed"
-}
+src_install() { :; }
 
