@@ -16,4 +16,18 @@ KEYWORDS="~amd64 ~x86"
 
 RDEPEND=">=net-libs/nodejs-0.4"
 
+src_prepare() {
+	if [[ -x ${ECONF_SOURCE:-.}/configure ]] ; then
+		econf
+	fi
+}
 
+src_compile() {
+	if [ -f Makefile ] || [ -f GNUmakefile ] || [ -f makefile ]; then
+		emake || die "emake failed"
+	fi
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "Install failed"
+}
