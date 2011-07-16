@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="The Node.js package manager"
 HOMEPAGE="https://github.com/isaacs/npm"
-SRC_URI="https://github.com/isaacs/${PN}/tarball/v${PV} -> ${P}.tar.bz2"
+SRC_URI="https://github.com/isaacs/${PN}/tarball/v${PV} -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
